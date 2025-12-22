@@ -1,0 +1,43 @@
+add_newline = true
+
+format = """
+$directory\
+$git_branch\
+$git_status
+$character
+"""
+
+palette = "catppuccin_mocha"
+
+[palettes.catppuccin_mocha]
+blue = "#89b4fa"
+mauve = "#cba6f7"
+green = "#a6e3a1"
+red = "#f38ba8"
+overlay = "#6c7086"
+
+[directory]
+style = "bold blue"
+truncation_length = 6
+truncate_to_repo = true
+
+[git_branch]
+symbol = " "
+format = " [($symbol$branch)]($style)"
+style = "bold mauve"
+
+[git_status]
+format = " [($conflicted$stashed$deleted$renamed$modified$staged$untracked$ahead_behind)]($style)"
+style = "overlay"
+conflicted = "≠"
+stashed = "≡"
+deleted = "✘"
+renamed = "»"
+modified = "!"
+staged = "+"
+untracked = "?"
+ahead = "⇡"
+behind = "⇣"
+diverged = "⇕"
+up_to_date = ""
+
