@@ -1,0 +1,48 @@
+
+[[ -f ~/.zprofile ]] && source ~/.zprofile
+
+# key bindings
+bindkey -M viins '^e' autosuggest-accept
+
+# use vi key-bindings in terminal
+set -o vi
+
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
+
+
+# ls aliases; uses eza
+alias ls='eza --color=always --group-directories-first'
+alias ll='eza -lh --git'
+alias la='eza -lha --git'
+
+# other aliases
+alias tree='tree -C'
+
+# file navigation
+source <(fzf --zsh)
+
+vf() {
+    local file
+    file=$(git ls-files | fzf --preview 'sed -n "1,200p" {}')
+    [[ -n "$file" ]] && nvim "$file"
+}
+
+if type rg &> /dev/null; then
+    export FZF_DEFAULT_COMMAND='rg --files'
+    export FZF_DEFAULT_OPTS='-m --height 50% --border'
+fi
+
+eval "$(starship init zsh)"
+
+eval "$(zoxide init zsh)"
+source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+# terminal output for new session
+cat $HOME/ascii-art/semi-truck.txt
+
