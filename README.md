@@ -17,10 +17,10 @@ This setup includes configurations for the following tools:
   - Config: [`terminal/zsh/zshrc`](terminal/zsh/zshrc)
 - **[Starship](https://starship.rs)** - Cross-shell prompt
   - Config: [`terminal/starship/starship.toml`](terminal/starship/starship.toml)
-
-### Browser & Navigation
-- **[Vimium](docs/vimium.md)** - Vim-like browser navigation
 - **[Zoxide](docs/zoxide.md)** - Smart directory navigation
+
+### Browser
+- **[Vimium](docs/vimium.md)** - Vim-like browser navigation
 
 ## Quick Start
 
