@@ -1,6 +1,6 @@
 # Local Development Setup
 
-This repository contains configuration files and documentation for my mac's local development environment.
+This repository contains configuration files and documentation for my Mac's local development environment.
 
 ## Tools & Configurations
 
@@ -20,7 +20,7 @@ This setup includes configurations for the following tools:
 - **[Zoxide](docs/zoxide.md)** - Smart directory navigation
 
 ### Browser
-- **[Vimium](docs/vimium.md)** - Vim-like browser navigation
+- **[Vimium](docs/vimium.md)** - Vim-like browser navigation (manual configuration via browser extension)
 
 ## Quick Start
 
