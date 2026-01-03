@@ -20,6 +20,9 @@ alias ls='eza --color=always --group-directories-first'
 alias ll='eza -lh --git'
 alias la='eza -lha --git'
 
+# cat alias
+alias cat='bat'
+
 # other aliases
 alias tree='tree -C'
 
