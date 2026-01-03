@@ -51,6 +51,14 @@ eval "$(zoxide init zsh)"
 source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
-# terminal output for new session
-cat $HOME/ascii-art/semi-truck.txt
+# Get the real (symlink-resolved) path to this zshrc file
+ZSHRC_REAL_PATH="${${(%):-%x}:A}"
+ZSHRC_DIR="${ZSHRC_REAL_PATH:h}"        # directory of zshrc
+TERMINAL_DIR="${ZSHRC_DIR:h}"           # parent dir (terminal/)
+ASCII_ART_FILE="$TERMINAL_DIR/ascii-art/semi-truck.txt"
+
+# Only print in interactive shells
+if [[ -o interactive && -f "$ASCII_ART_FILE" ]]; then
+  cat --plain "$ASCII_ART_FILE"
+fi
 
