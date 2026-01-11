@@ -38,10 +38,12 @@ BREW_PACKAGES=(
   gh
   ripgrep
   fd
+  font-jetbrains-mono-nerd-font
   fzf
   bat
   eza
   jq
+  lazygit
   yq
   wget
   curl
