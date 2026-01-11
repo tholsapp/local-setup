@@ -48,6 +48,11 @@ ZSH_SRC="$REPO_ROOT/zsh/zshrc"
 ZSH_DST="$HOME/.zshrc"
 replace_symlink "$ZSH_SRC" "$ZSH_DST"
 
+# --- vim ---
+VIM_SRC="$REPO_ROOT/vim/vimrc"
+VIM_DST="$HOME/.vimrc"
+replace_symlink "$VIM_SRC" "$VIM_DST"
+
 # --- tmux ---
 TMUX_SRC="$REPO_ROOT/tmux/tmux.conf"
 TMUX_DST="$HOME/.tmux.conf"
