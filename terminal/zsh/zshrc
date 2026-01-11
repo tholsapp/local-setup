@@ -6,6 +6,8 @@ bindkey -M viins '^e' autosuggest-accept
 
 # use vi key-bindings in terminal
 set -o vi
+bindkey -M viins '^?' backward-delete-char
+bindkey '^?' backward-delete-char
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
