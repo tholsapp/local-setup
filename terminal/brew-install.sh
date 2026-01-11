@@ -50,6 +50,8 @@ BREW_PACKAGES=(
   neovim
   starship
   zoxide
+  zsh-autosuggestions
+  zsh-syntax-highlighting
 )
 
 echo "📦 Installing brew packages..."
