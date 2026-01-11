@@ -1,0 +1,175 @@
+" ==============================
+" Plugins
+" ==============================
+
+call plug#begin()
+
+" tmux + vim navigation
+Plug 'christoomey/vim-tmux-navigator'
+
+" file navigation
+Plug 'preservim/nerdtree'
+Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" git
+Plug 'tpope/vim-fugitive'
+
+" statusline
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+call plug#end()
+
+" ==============================
+" Appearance
+" ==============================
+set termguicolors
+colorscheme catppuccin_mocha
+syntax on
+set number
+set cursorline
+
+let g:airline_theme='catppuccin_mocha'
+let g:airline#extensions#tabline#enabled = 1
+
+" ==============================
+" Core behavior (IDE defaults)
+" ==============================
+
+set nocompatible
+set encoding=utf-8
+set nobomb
+set backspace=indent,eol,start
+
+" clipboard
+set clipboard^=unnamed,unnamedplus
+
+" splits
+set splitright
+set splitbelow
+
+" completion UI
+set wildmenu
+set shortmess+=c
+set cmdheight=2
+set updatetime=300
+set signcolumn=yes
+set hidden
+
+" search
+set gdefault
+set hlsearch
+set ignorecase
+set incsearch
+if has('nvim')
+    set inccommand=split
+endif
+" remove highlighting with escape key
+nnoremap <Esc> :noh<CR><ESC>
+
+" indentation
+set tabstop=4 shiftwidth=4 softtabstop=0 expandtab
+
+" visible whitespace
+set lcs=tab:▸\ ,trail:·,nbsp:_
+set list
+
+" statusline / tabs
+set laststatus=2
+set showtabline=2
+
+" mouse disabled (explicit)
+set mouse=a
+
+" misc UX
+set noerrorbells
+set ttyfast
+set nostartofline
+set ruler
+set shortmess=atI
+set showmode
+set title
+set showcmd
+set scrolloff=3
+
+" relative numbers
+if exists("&relativenumber")
+  set relativenumber
+  au BufReadPost * set relativenumber
+endif
+
+" ==============================
+" Backups / undo
+" ==============================
+
+set backupdir=~/.vim/backups
+set directory=~/.vim/swaps
+if exists("&undodir")
+  set undodir=~/.vim/undo
+endif
+
+silent !mkdir -p ~/.vim/backups ~/.vim/swaps ~/.vim/undo >/dev/null 2>&1
+set backupskip=/tmp/*,/private/tmp/*
+
+" modeline safety
+set modeline
+set modelines=4
+set exrc
+set secure
+
+" ==============================
+" Leader
+" ==============================
+let mapleader=","
+
+" ==============================
+" FZF
+" ==============================
+
+let $FZF_DEFAULT_COMMAND = 'fd --type f --hidden --follow --exclude .git --exclude node_modules --exclude build --exclude dist --exclude target'
+
+let g:fzf_action = {
+      \ 'enter': 'tab split',
+      \ 'ctrl-t': 'tab split',
+      \ 'ctrl-x': 'split',
+      \ 'ctrl-v': 'vsplit',
+      \ }
+
+nnoremap <silent> <C-f> :GFiles<CR>
+nnoremap <silent> <C-c> :Rg<CR>
+nnoremap <silent> <leader>p :Files<CR>
+nnoremap <silent> <leader>b :Buffers<CR>
+
+" ==============================
+" Helpers
+" ==============================
+
+function! StripWhitespace()
+  let save_cursor = getpos(".")
+  let old_query = getreg('/')
+  %s/\s\+$//e
+  call setpos('.', save_cursor)
+  call setreg('/', old_query)
+endfunction
+noremap <leader>ss :call StripWhitespace()<CR>
+
+noremap <leader>W :w !sudo tee % > /dev/null<CR>
+
+" ==============================
+" Filetypes
+" ==============================
+if has("autocmd")
+  filetype plugin indent on
+  autocmd BufNewFile,BufRead *.json setfiletype json
+  autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
+endif
+
+" ==============================
+" NERDTree
+" ==============================
+let NERDTreeShowHidden=1
+nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <leader>n :NERDTreeFind<CR>
+nnoremap <leader>tn :tabnew<CR>:NERDTree<CR>
+nnoremap <leader>tm :NERDTreeMirror<CR>
