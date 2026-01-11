@@ -4,6 +4,8 @@
 
 call plug#begin()
 
+Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+
 " tmux + vim navigation
 Plug 'christoomey/vim-tmux-navigator'
 
