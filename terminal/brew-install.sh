@@ -67,11 +67,26 @@ for pkg in "${BREW_PACKAGES[@]}"; do
 done
 
 # -----------------------------
-# Optional taps / extras
+# Borders (JankyBorders) - requires tapping FelixKratz/formulae
 # -----------------------------
-# Example:
-# brew tap homebrew/cask
-# brew install --cask iterm2
+BORDERS_TAP="FelixKratz/formulae"
+BORDERS_PKG="borders"
+
+echo "🧩 Ensuring tap exists: $BORDERS_TAP"
+if brew tap | grep -qx "$BORDERS_TAP"; then
+  echo "✔ Tap already added: $BORDERS_TAP"
+else
+  echo "➕ Tapping $BORDERS_TAP"
+  brew tap "$BORDERS_TAP"
+fi
+
+echo "🪟 Installing $BORDERS_PKG..."
+if brew list "$BORDERS_PKG" >/dev/null 2>&1; then
+  echo "✔ $BORDERS_PKG already installed"
+else
+  echo "⬇ Installing $BORDERS_PKG"
+  brew install "$BORDERS_PKG"
+fi
 
 echo "✅ Brew bootstrap complete"
 
